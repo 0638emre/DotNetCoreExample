@@ -19,6 +19,7 @@ namespace DataAccess.Context
         public DbSet<User> Users { get; set; }
         public DbSet<Document> Documents { get; set; }
         public DbSet<Meet> Meets { get; set; }
+        public DbSet<MeetUser> MeetUser { get; set; }
 
         //entityler modellenirken FluentApi kullanıldı.
         protected override void OnModelCreating(ModelBuilder modelBuilder)

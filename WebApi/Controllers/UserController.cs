@@ -23,7 +23,7 @@ namespace WebApi.Controllers
         /// <param name="createUser"></param>
         /// <returns></returns>
         [HttpPost("CreateUser")]
-        public async Task<IActionResult> CreateUser(CreateUserDTO createUser)
+        public async Task<IActionResult> CreateUser([FromQuery] CreateUserDTO createUser)
         {
             bool result = await _userService.CreateUserAsync(createUser);
 
@@ -42,7 +42,7 @@ namespace WebApi.Controllers
         /// <param name="password"></param>
         /// <returns></returns>
         [HttpGet("LoginUser")]
-        public async Task<IActionResult> LoginUser(string email, string password)
+        public async Task<IActionResult> LoginUser([FromQuery] string email, string password)
         {
             bool result = await _userService.LoginUserAsync(email, password);
 
