@@ -1,6 +1,8 @@
 ﻿using Bussiness.Abstract;
 using Bussiness.DTOs;
 using DataAccess.Context;
+using Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Bussiness.Concrete
 {
@@ -43,9 +45,18 @@ namespace Bussiness.Concrete
             return true;
         }
 
-        public Task<bool> LoginUserAsync(string email, string password)
+        public async Task<bool> LoginUserAsync(string email, string password)
         {
-            throw new NotImplementedException();
+            User user = await _context.Users
+                .Where(u => u.Email == email && u.Password == password)
+                .FirstOrDefaultAsync();
+
+            if (user is null)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

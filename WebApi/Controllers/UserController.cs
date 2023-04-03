@@ -15,7 +15,7 @@ namespace WebApi.Controllers
             _userService = userService;
         }
 
-        [HttpPost]
+        [HttpPost("CreateUser")]
         public async Task<IActionResult> CreateUser(CreateUserDTO createUser)
         {
             bool result = await _userService.CreateUserAsync(createUser);
@@ -26,6 +26,19 @@ namespace WebApi.Controllers
             }
 
             return Ok("Kullanıcı başarıyla oluşturuldu.");
+        }
+
+        [HttpGet("LoginUser")]
+        public async Task<IActionResult> LoginUser(string email, string password)
+        {
+            bool result = await _userService.LoginUserAsync(email, password);
+
+            if (!result)
+            {
+                return Ok("Başarısız kullanıcı girişi.");
+            }
+
+            return Ok("Kullanıcı başarıyla oturum açtı.");
         }
     }
 }
