@@ -5,6 +5,10 @@ namespace DataAccess.Context
 {
     public class DotNetCoreExampleDB : DbContext
     {
+        public DotNetCoreExampleDB(DbContextOptions<DotNetCoreExampleDB> options) : base(options)
+        {
+
+        }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //burası app settings te saklanmalı.
