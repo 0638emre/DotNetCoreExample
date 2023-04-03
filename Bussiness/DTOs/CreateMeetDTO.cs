@@ -8,7 +8,5 @@ namespace Bussiness.DTOs
         public string MeetDescription { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
-        public ICollection<User> Subscriber { get; set; }
-        public ICollection<Document> Documents { get; set; }
     }
 }

@@ -6,7 +6,7 @@
         public string MeetDescription { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
-        public ICollection<User> Subscriber { get; set; }
-        public IEnumerable<Document> Documents { get; set; }
+        public ICollection<MeetUser> MeetUsers { get; set; }
+        public ICollection<Document> Documents { get; set; }
     }
 }

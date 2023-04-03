@@ -47,7 +47,7 @@ namespace WebApi.Controllers
             return Ok(data);
         }
 
-        [HttpDelete("UpdateMeetAsync")]
+        [HttpPut("UpdateMeetAsync")]
         public async Task<IActionResult> UpdateMeetAsync([FromBody] UpdateMeetDTO updateMeet)
         {
             var data = await _meetService.UpdateMeetAsync(updateMeet);
@@ -55,7 +55,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPost("AddDocumentToMeetAsync")]
-        public async Task<IActionResult> AddDocumentToMeetAsync([FromBody] AddDocumentToMeetDTO addDocumentToMeet)
+        public async Task<IActionResult> AddDocumentToMeetAsync([FromQuery] AddDocumentToMeetDTO addDocumentToMeet)
         {
             var data = await _meetService.AddDocumentToMeetAsync(addDocumentToMeet);
             return Ok(data);

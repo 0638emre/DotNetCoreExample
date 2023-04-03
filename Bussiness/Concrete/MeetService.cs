@@ -40,13 +40,24 @@ namespace Bussiness.Concrete
         {
             try
             {
-                Meet meet = _mapper.Map<Meet>(createMeet);
-                var data = await _context.Meets.AddAsync(meet);
+                //burada ilgili subscriber yani user id gerçekten var mı
+                //burada ilgili documentid gerçekten var mı kontrolleri gerekmektedir. bu validationların bussines süreci gözden geçirilip yazılmalıdır.
+
+                //Meet meet = _mapper.Map<Meet>(createMeet);
+                var data = await _context.Meets.AddAsync(new()
+                {
+                        Id = Guid.NewGuid(),
+                        MeetName = createMeet.MeetName,
+                        MeetDescription = createMeet.MeetDescription,
+                        StartTime = createMeet.StartTime,
+                        EndTime = createMeet.EndTime
+                });
                 await _context.SaveChangesAsync();
                 var meetEntity = data.Entity;
 
                 if (meetEntity is not null)
                 {
+                    //burada toplantı bilgileri maili atılabilir.
                     return true;
                 }
             }
@@ -66,7 +77,7 @@ namespace Bussiness.Concrete
                 await _context.MeetUser.AddAsync(new MeetUser
                 {
                     MeetId = addUserToMeet.MeetId,
-                    SubscriberId = subscriberId
+                    UserId = subscriberId
                 });
             }
 

@@ -27,6 +27,18 @@ namespace DataAccess.Context
             modelBuilder.Entity<User>()
                 .HasKey(u => u.Id);
 
+            modelBuilder.Entity<MeetUser>()
+                .HasKey(mu => new { mu.MeetId, mu.UserId });
+
+            modelBuilder.Entity<MeetUser>()
+                .HasOne(mu => mu.Meet)
+                .WithMany(m => m.MeetUsers)
+                .HasForeignKey(mu => mu.MeetId);
+
+            modelBuilder.Entity<MeetUser>()
+                .HasOne(mu => mu.User)
+                .WithMany(u => u.MeetUsers)
+                .HasForeignKey(mu => mu.UserId);
             modelBuilder.Entity<Meet>()
                 .HasKey(m => m.Id);
 

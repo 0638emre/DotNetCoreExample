@@ -42,6 +42,7 @@ namespace Bussiness.Concrete
                 return false;
             }
 
+            //burada hoşgeldiniz maili atılabilir.
             return true;
         }
 

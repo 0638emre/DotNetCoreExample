@@ -1,6 +1,7 @@
 using Bussiness.Abstract;
 using Bussiness.Concrete;
 using DataAccess.Context;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 //bu þekilde verilmesi best practice deðil. servisler kendi katmanlarnýda register edilmeli.
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IMeetService, MeetService>();
+builder.Services.AddAutoMapper(typeof(IStartup));
 builder.Services.AddDbContext<DotNetCoreExampleDB>(option =>
     option.UseSqlServer("Data Source = localhost;Initial Catalog=DotNetCoreExampleDB;Integrated Security=true;TrustServerCertificate=True"));
 
