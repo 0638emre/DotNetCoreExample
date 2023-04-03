@@ -8,6 +8,9 @@ namespace WebApi.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
+        /// <summary>
+        /// CQRS ve MediatR kullanılırsa best practice olur.
+        /// </summary>
         private readonly IUserService _userService;
 
         public UserController(IUserService userService)
@@ -15,6 +18,10 @@ namespace WebApi.Controllers
             _userService = userService;
         }
 
+        /// <summary>
+        /// kullanıcı kaydı için kullanılan api metot. validation yazılmadı. 
+        /// <param name="createUser"></param>
+        /// <returns></returns>
         [HttpPost("CreateUser")]
         public async Task<IActionResult> CreateUser(CreateUserDTO createUser)
         {
@@ -28,6 +35,12 @@ namespace WebApi.Controllers
             return Ok("Kullanıcı başarıyla oluşturuldu.");
         }
 
+        /// <summary>
+        /// kullanıcı girişi için kullanılan api metot. validation yazılmadı.
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         [HttpGet("LoginUser")]
         public async Task<IActionResult> LoginUser(string email, string password)
         {
